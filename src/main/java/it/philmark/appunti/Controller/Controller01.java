@@ -11,9 +11,13 @@ import it.philmark.appunti.domain.Role;
 import it.philmark.appunti.service.ServicesImpl;
 import java.net.URI;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +35,7 @@ public class Controller01 {
     @Autowired
     ServicesImpl servImpl;
 
-    @RequestMapping(value = {"/usersList"})
+    @GetMapping(value = {"/usersList"})
     public ResponseEntity<List<AppUser>> getUsers() {
         return ResponseEntity.ok().body(servImpl.getUsers());
     }
@@ -52,6 +56,10 @@ public class Controller01 {
     public ResponseEntity<?> addRoleToUser(@RequestBody String username, String name) {
         servImpl.addRoleToUser(username, name);
         return ResponseEntity.ok().build();
+    }
+    @RequestMapping(value = {"/refreshToken"})
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
+         String authorizationHeader = request.getHeader(AUTHORIZATION);
     }
 
   

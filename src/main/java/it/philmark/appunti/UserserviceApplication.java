@@ -36,7 +36,7 @@ public class UserserviceApplication {
 //                userService.saveUser(new AppUser(null,"Prat","Sdenf","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Johnny","Sbaunch","1234", new ArrayList<>()));
 //                
-//                userService.addRoleToUser("Hank", "Role_User");
+//                userService.addRoleToUser("Hank", "Role_User");//Attenzione se dovete rifare il bean scriveteli tutti in maiuscuolo i ruoli es ROLE_USER
 //                userService.addRoleToUser("Papa", "Role_Manager");
 //                userService.addRoleToUser("Carl", "Role_Admin");
 //                userService.addRoleToUser("Sdenf", "Role_Super_Admin");
