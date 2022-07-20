@@ -7,6 +7,7 @@ package it.philmark.appunti.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -70,6 +71,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             tokens.put("acces_token", acces_token);
             tokens.put("refresh_token", refresh_token);
             response.setContentType(APPLICATION_JSON_VALUE);
+            new ObjectMapper().writeValue(response.getOutputStream(), tokens);
 
     }
 
