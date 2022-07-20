@@ -25,10 +25,10 @@ public class UserserviceApplication {
 //        @Bean
 //        CommandLineRunner run (ServicesImpl userService){
 //            return args -> {
-//                userService.saveRole(new Role(null,"Role_User"));
-//                userService.saveRole(new Role(null,"Role_Manager"));
-//                userService.saveRole(new Role(null,"Role_Admin"));
-//                userService.saveRole(new Role(null,"Role_Super_Admin"));
+//                userService.saveRole(new Role(null,"ROLE_USER"));
+//                userService.saveRole(new Role(null,"ROLE_MANAGER"));
+//                userService.saveRole(new Role(null,"ROLE_ADMIN"));
+//                userService.saveRole(new Role(null,"ROLE_SUPER_ADMIN"));
 //                
 //                userService.saveUser(new AppUser(null,"Hank ca","Hank","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"FRankd","Papa","1234", new ArrayList<>()));
@@ -36,12 +36,12 @@ public class UserserviceApplication {
 //                userService.saveUser(new AppUser(null,"Prat","Sdenf","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Johnny","Sbaunch","1234", new ArrayList<>()));
 //                
-//                userService.addRoleToUser("Hank", "Role_User");//Attenzione se dovete rifare il bean scriveteli tutti in maiuscuolo i ruoli es ROLE_USER
-//                userService.addRoleToUser("Papa", "Role_Manager");
-//                userService.addRoleToUser("Carl", "Role_Admin");
-//                userService.addRoleToUser("Sdenf", "Role_Super_Admin");
-//                userService.addRoleToUser("Sdenf", "Role_Admin");
-//                userService.addRoleToUser("Sbaunch", "Role_Manager");
+//                userService.addRoleToUser("Hank", "ROLE_USER");//Attenzione se dovete rifare il bean scriveteli tutti in maiuscuolo i ruoli es ROLE_USER
+//                userService.addRoleToUser("Papa", "ROLE_MANAGER");
+//                userService.addRoleToUser("Carl", "ROLE_ADMIN");
+//                userService.addRoleToUser("Sdenf", "ROLE_SUPER_ADMIN");
+//                userService.addRoleToUser("Sdenf", "ROLE_ADMIN");
+//                userService.addRoleToUser("Sbaunch", "ROLE_MANAGER");
 //                
 //                
 //            };
