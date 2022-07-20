@@ -5,8 +5,8 @@
  */
 package it.philmark.appunti.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
@@ -33,6 +34,10 @@ public class AppUser  {
     private List<Role> roles= new ArrayList<>();
     
     public AppUser() {
+    }
+
+    public AppUser(String name, String password, Collection<GrantedAuthority> authorities) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Long getId() {
@@ -73,6 +78,14 @@ public class AppUser  {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public AppUser(Long id, String name, String username, String password,ArrayList<Role> list) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.roles=list;
     }
     
 }
