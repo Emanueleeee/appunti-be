@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -74,16 +75,17 @@ public class ServicesImpl implements Services, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)  {
         AppUser user= repoUser.findByUsername(username);
-        if (null == user ) {
+         UserDetails userDetails;
+        if (user == null ) {
             throw new UsernameNotFoundException("Username not found");
+        }else{
+             Collection<SimpleGrantedAuthority> authorities= new ArrayList<>();
+        user.getRoles().forEach(
+            role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+          userDetails = (UserDetails) new User(user.getUsername(), user.getPassword(), authorities);
         }
-        Collection<GrantedAuthority> authorities= new ArrayList<>();
-        user.getRoles().forEach(role->{
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        });
-         UserDetails userDetails = (UserDetails) new AppUser(user.getName(), user.getPassword(), authorities);
         return userDetails;
            
     }
-    
+
 }

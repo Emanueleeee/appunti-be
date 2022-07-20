@@ -36,9 +36,6 @@ public class AppUser  {
     public AppUser() {
     }
 
-    public AppUser(String name, String password, Collection<GrantedAuthority> authorities) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public Long getId() {
         return id;
