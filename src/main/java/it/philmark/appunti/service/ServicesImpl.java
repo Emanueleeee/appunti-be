@@ -8,8 +8,10 @@ package it.philmark.appunti.service;
 import it.philmark.appunti.domain.AppUser;
 import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.domain.Role;
+import it.philmark.appunti.domain.Tag;
 import it.philmark.appunti.repository.AppuntiRepo;
 import it.philmark.appunti.repository.RoleRepo;
+import it.philmark.appunti.repository.TagRepo;
 import it.philmark.appunti.repository.UserRepo;
 
 import static java.lang.System.console;
@@ -44,6 +46,8 @@ public class ServicesImpl implements Services, UserDetailsService {
     RoleRepo repoRole;
     @Autowired
     AppuntiRepo appuntiRepo;
+    @Autowired
+    TagRepo repoTag;
     private final PasswordEncoder passwordEncoder;
 
     public ServicesImpl(PasswordEncoder passwordEncoder) {
@@ -95,27 +99,35 @@ public class ServicesImpl implements Services, UserDetailsService {
     }
 
     @Override
-    public Appunti saveAppunti(Appunti appunti)
-    {
+    public Appunti saveAppunti(Appunti appunti) {
         return appuntiRepo.save(appunti);
     }
 
     @Override
-    public void appuntiDel(Appunti appunti)
-    {
+    public void appuntiDel(Appunti appunti) {
         appuntiRepo.delete(appunti);
     }
 
     @Override
-    public List<Appunti> listaAppunti()
-    {
+    public List<Appunti> listaAppunti() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Appunti> listaAppuntiPerUtente(AppUser appUser)
-    {
+    public List<Appunti> listaAppuntiPerUtente(AppUser appUser) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void addTagToAppunti(String titolo, String descrizione) {
+        Appunti appunti = appuntiRepo.findByTitolo(titolo);
+        Tag tag = repoTag.findByDescrizione(descrizione);
+        appunti.getTags().add(tag);
+    }
+
+    @Override
+    public Tag saveTag(Tag tag) {
+        return repoTag.save(tag);
     }
 
 }

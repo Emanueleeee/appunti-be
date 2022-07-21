@@ -4,6 +4,7 @@
  */
 package it.philmark.appunti.repository;
 
+import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.domain.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface TagRepo extends JpaRepository<Tag, Long>
 {
-    
+    Tag findByDescrizione(String descrizione);
 }

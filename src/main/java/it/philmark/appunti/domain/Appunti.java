@@ -23,6 +23,14 @@ public class Appunti extends BaseEntity {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Tag> tags= new ArrayList<>();
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
 	public String getTitolo() {
 		return titolo;
 	}
