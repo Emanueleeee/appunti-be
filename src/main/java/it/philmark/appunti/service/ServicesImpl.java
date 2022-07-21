@@ -6,8 +6,12 @@
 package it.philmark.appunti.service;
 
 import it.philmark.appunti.domain.AppUser;
+import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.domain.Role;
+import it.philmark.appunti.domain.Tag;
+import it.philmark.appunti.repository.AppuntiRepo;
 import it.philmark.appunti.repository.RoleRepo;
+import it.philmark.appunti.repository.TagRepo;
 import it.philmark.appunti.repository.UserRepo;
 
 import static java.lang.System.console;
@@ -40,6 +44,10 @@ public class ServicesImpl implements Services, UserDetailsService {
     UserRepo repoUser;
     @Autowired
     RoleRepo repoRole;
+    @Autowired
+    AppuntiRepo appuntiRepo;
+    @Autowired
+    TagRepo repoTag;
     private final PasswordEncoder passwordEncoder;
 
     public ServicesImpl(PasswordEncoder passwordEncoder) {
@@ -88,6 +96,38 @@ public class ServicesImpl implements Services, UserDetailsService {
         }
         return userDetails;
 
+    }
+
+    @Override
+    public Appunti saveAppunti(Appunti appunti) {
+        return appuntiRepo.save(appunti);
+    }
+
+    @Override
+    public void appuntiDel(Appunti appunti) {
+        appuntiRepo.delete(appunti);
+    }
+
+    @Override
+    public List<Appunti> listaAppunti() {
+        return appuntiRepo.findAll();
+    }
+
+    @Override
+    public List<Appunti> listaAppuntiPerUtente(Long id) {
+        return appuntiRepo.findAllByAppUserId(id);
+    }
+
+    @Override
+    public void addTagToAppunti(String titolo, String descrizione) {
+        Appunti appunti = appuntiRepo.findByTitolo(titolo);
+        Tag tag = repoTag.findByDescrizione(descrizione);
+        appunti.getTags().add(tag);
+    }
+
+    @Override
+    public Tag saveTag(Tag tag) {
+        return repoTag.save(tag);
     }
 
 }
