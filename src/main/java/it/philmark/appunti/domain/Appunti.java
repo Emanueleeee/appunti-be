@@ -58,6 +58,14 @@ public class Appunti extends BaseEntity {
 	public void setTesto(String testo) {
 		this.testo = testo;
 	}
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
 	
 	
 	
