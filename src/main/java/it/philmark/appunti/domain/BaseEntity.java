@@ -24,7 +24,7 @@ public class BaseEntity {
     private LocalDate dataModifica;
     private String utenteCreazione;
     private String utenteModifica;
-
+    
     public Long getId() {
         return id;
     }
