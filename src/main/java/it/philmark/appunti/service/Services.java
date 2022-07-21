@@ -6,6 +6,7 @@
 package it.philmark.appunti.service;
 
 import it.philmark.appunti.domain.AppUser;
+import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.domain.Role;
 import java.util.List;
 
@@ -19,4 +20,10 @@ public interface Services {
     void addRoleToUser(String username, String name);
     AppUser getUser(String username);
     List<AppUser>getUsers();
+    Appunti saveAppunti(Appunti appunti);
+    public void appuntiDel(Appunti appunti);
+    public List<Appunti>listaAppunti();
+    public List<Appunti>listaAppuntiPerUtente(AppUser appUser);
+    
+    
 }
