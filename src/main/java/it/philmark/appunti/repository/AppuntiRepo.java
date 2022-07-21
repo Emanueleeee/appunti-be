@@ -7,6 +7,9 @@ package it.philmark.appunti.repository;
 
 import it.philmark.appunti.domain.AppUser;
 import it.philmark.appunti.domain.Appunti;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -15,4 +18,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AppuntiRepo extends JpaRepository<Appunti, Long> {
      Appunti findByTitolo(String titolo);
+     List<Appunti> findAllByUtenteId(Long id);
 }

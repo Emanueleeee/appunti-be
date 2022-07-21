@@ -27,7 +27,7 @@ public interface Services {
      Appunti saveAppunti(Appunti appunti);
     public void appuntiDel(Appunti appunti);
     public List<Appunti>listaAppunti();
-    public List<Appunti>listaAppuntiPerUtente(AppUser appUser);
+    public List<Appunti>listaAppuntiPerUtente(Long id);
     //Metodi Tag
     void addTagToAppunti(String titolo, String descrizione);//Da chiedere idea ad ogni titolo appunti i tag
      Tag saveTag(Tag tag);

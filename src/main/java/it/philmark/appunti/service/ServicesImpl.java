@@ -110,12 +110,12 @@ public class ServicesImpl implements Services, UserDetailsService {
 
     @Override
     public List<Appunti> listaAppunti() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return appuntiRepo.findAll();
     }
 
     @Override
-    public List<Appunti> listaAppuntiPerUtente(AppUser appUser) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Appunti> listaAppuntiPerUtente(Long id) {
+        return appuntiRepo.findAllByUtenteId(id);
     }
 
     @Override
