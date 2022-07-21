@@ -151,7 +151,7 @@ public class Controller01 {
         return this.servImpl.listaAppuntiPerUtente(id);
     }
     
-    @PostMapping(value ={"/salvaTag"})
+    @PostMapping(value ={"/salvaTag"})//Si puo togliere perche saveAppunti fa tutto lui
     @ResponseBody
     public Tag salvaTag(
             @RequestBody Tag tag)
