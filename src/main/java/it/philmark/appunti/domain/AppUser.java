@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -37,10 +38,10 @@ public class AppUser extends BaseEntity {
     
     @OneToMany(cascade = CascadeType.ALL,
     		   fetch=FetchType.LAZY,
-    		   mappedBy="app_user")
+    		   mappedBy="appUser")
     private List<Appunti> listaAppunti = new ArrayList<>(); 
     
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Role> roles= new ArrayList<>();
     
     public AppUser() {
@@ -81,11 +82,12 @@ public class AppUser extends BaseEntity {
         this.roles = roles;
     }
 
-    public AppUser(Long id, String name, String username, String password,ArrayList<Role> list) {
+    public AppUser(Long id, String name, String username, String password,ArrayList<Role> list, ArrayList<Appunti> appunti) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.roles=list;
+        this.listaAppunti=appunti;
     }
     
 }

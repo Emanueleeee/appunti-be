@@ -113,10 +113,10 @@ public class ServicesImpl implements Services, UserDetailsService {
         return appuntiRepo.findAll();
     }
 
-    @Override
-    public List<Appunti> listaAppuntiPerUtente(Long id) {
-        return appuntiRepo.findAllByUtenteId(id);
-    }
+//    @Override
+//    public List<Appunti> listaAppuntiPerUtente(Long id) {
+//        return appuntiRepo.findAllByUtenteId(id);
+//    }
 
     @Override
     public void addTagToAppunti(String titolo, String descrizione) {
