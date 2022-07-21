@@ -9,24 +9,46 @@ import it.philmark.appunti.domain.AppUser;
 import it.philmark.appunti.domain.Role;
 import it.philmark.appunti.repository.RoleRepo;
 import it.philmark.appunti.repository.UserRepo;
+
+import static java.lang.System.console;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author Emanuele
  */
 @Service
-public class ServicesImpl implements Services {
+@Transactional//Serve per mettere many to many subito
+@Slf4j
+public class ServicesImpl implements Services, UserDetailsService {
 
     @Autowired
     UserRepo repoUser;
     @Autowired
     RoleRepo repoRole;
+    private final PasswordEncoder passwordEncoder;
+
+    public ServicesImpl(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public AppUser saveUser(AppUser user) {
-        
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repoUser.save(user);
     }
 
@@ -37,10 +59,10 @@ public class ServicesImpl implements Services {
 
     @Override
     public void addRoleToUser(String username, String name) {
-        AppUser user =repoUser.findByUsername(username);
-        Role role=repoRole.findByName(name);
+        AppUser user = repoUser.findByUsername(username);
+        Role role = repoRole.findByName(name);
         user.getRoles().add(role);
-        
+
     }
 
     @Override
@@ -52,5 +74,20 @@ public class ServicesImpl implements Services {
     public List<AppUser> getUsers() {
         return repoUser.findAll();
     }
-    
+
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        AppUser user = repoUser.findByUsername(username);
+        UserDetails userDetails;
+        if (user == null) {
+            throw new UsernameNotFoundException("Username not found");
+        } else {
+            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+            userDetails = (UserDetails) new User(user.getUsername(), user.getPassword(), authorities);
+        }
+        return userDetails;
+
+    }
+
 }
