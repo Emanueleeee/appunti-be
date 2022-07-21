@@ -6,7 +6,9 @@
 package it.philmark.appunti.service;
 
 import it.philmark.appunti.domain.AppUser;
+import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.domain.Role;
+import it.philmark.appunti.repository.AppuntiRepo;
 import it.philmark.appunti.repository.RoleRepo;
 import it.philmark.appunti.repository.UserRepo;
 
@@ -40,6 +42,8 @@ public class ServicesImpl implements Services, UserDetailsService {
     UserRepo repoUser;
     @Autowired
     RoleRepo repoRole;
+    @Autowired
+    AppuntiRepo appuntiRepo;
     private final PasswordEncoder passwordEncoder;
 
     public ServicesImpl(PasswordEncoder passwordEncoder) {
@@ -88,6 +92,30 @@ public class ServicesImpl implements Services, UserDetailsService {
         }
         return userDetails;
 
+    }
+
+    @Override
+    public Appunti saveAppunti(Appunti appunti)
+    {
+        return appuntiRepo.save(appunti);
+    }
+
+    @Override
+    public void appuntiDel(Appunti appunti)
+    {
+        appuntiRepo.delete(appunti);
+    }
+
+    @Override
+    public List<Appunti> listaAppunti()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Appunti> listaAppuntiPerUtente(AppUser appUser)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
