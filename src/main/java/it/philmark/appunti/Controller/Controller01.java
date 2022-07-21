@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import it.philmark.appunti.domain.AppUser;
 import it.philmark.appunti.domain.Role;
 import it.philmark.appunti.service.ServicesImpl;
+
 import java.io.IOException;
 import java.net.URI;
 import java.util.Date;
@@ -22,11 +23,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+
 import org.springframework.http.HttpStatus;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +43,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 /**
- *
  * @author Emanuele
  */
 @CrossOrigin("*")
@@ -82,12 +87,7 @@ public class Controller01 {
                 DecodedJWT decodedJWT = verifier.verify(refreshToken);
                 String username = decodedJWT.getSubject();
                 AppUser user = servImpl.getUser(username);
-                String acces_token = JWT.create()
-                        .withSubject(user.getUsername())
-                        .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
-                        .withIssuer(request.getRequestURL().toString())
-                        .withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
-                        .sign(algorithm);
+                String acces_token = JWT.create().withSubject(user.getUsername()).withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000)).withIssuer(request.getRequestURL().toString()).withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList())).sign(algorithm);
 
                 Map<String, String> tokens = new HashMap();
                 tokens.put("acces_token", acces_token);

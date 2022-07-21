@@ -11,13 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- *
  * @author Emanuele
  */
 @Entity
 public class Role {
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
@@ -44,5 +43,5 @@ public class Role {
 
     public Role() {
     }
-    
+
 }

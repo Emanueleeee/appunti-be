@@ -9,10 +9,13 @@ import it.philmark.appunti.domain.AppUser;
 import it.philmark.appunti.domain.Role;
 import it.philmark.appunti.repository.RoleRepo;
 import it.philmark.appunti.repository.UserRepo;
+
 import static java.lang.System.console;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,11 +29,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author Emanuele
  */
 @Service
-@Transactional//Serve per mettere meny to many subito
+@Transactional//Serve per mettere many to many subito
 @Slf4j
 public class ServicesImpl implements Services, UserDetailsService {
 
@@ -43,6 +45,7 @@ public class ServicesImpl implements Services, UserDetailsService {
     public ServicesImpl(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
+
     @Override
     public AppUser saveUser(AppUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -56,10 +59,10 @@ public class ServicesImpl implements Services, UserDetailsService {
 
     @Override
     public void addRoleToUser(String username, String name) {
-        AppUser user =repoUser.findByUsername(username);
-        Role role=repoRole.findByName(name);
+        AppUser user = repoUser.findByUsername(username);
+        Role role = repoRole.findByName(name);
         user.getRoles().add(role);
-        
+
     }
 
     @Override
@@ -73,19 +76,18 @@ public class ServicesImpl implements Services, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username)  {
-        AppUser user= repoUser.findByUsername(username);
-         UserDetails userDetails;
-        if (user == null ) {
+    public UserDetails loadUserByUsername(String username) {
+        AppUser user = repoUser.findByUsername(username);
+        UserDetails userDetails;
+        if (user == null) {
             throw new UsernameNotFoundException("Username not found");
-        }else{
-             Collection<SimpleGrantedAuthority> authorities= new ArrayList<>();
-        user.getRoles().forEach(
-            role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
-          userDetails = (UserDetails) new User(user.getUsername(), user.getPassword(), authorities);
+        } else {
+            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+            userDetails = (UserDetails) new User(user.getUsername(), user.getPassword(), authorities);
         }
         return userDetails;
-           
+
     }
 
 }
