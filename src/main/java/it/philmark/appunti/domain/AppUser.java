@@ -8,6 +8,7 @@ package it.philmark.appunti.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,9 +24,9 @@ import org.springframework.security.core.GrantedAuthority;
 @Entity
 public class AppUser extends BaseEntity {
 
-
-    private String name;
+    @Column(unique=true)
     private String username;
+    private String name;
     private String password;
     
     @ManyToMany(fetch = FetchType.EAGER)
