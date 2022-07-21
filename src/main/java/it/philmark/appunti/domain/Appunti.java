@@ -22,7 +22,7 @@ public class Appunti extends BaseEntity {
 	private String testo;
 	
 	@ManyToOne
-	@JoinColumn(name="utente_id")
+	@JoinColumn(name="app_user_id")
 	private AppUser appUser;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Tag> tags= new ArrayList<>();
