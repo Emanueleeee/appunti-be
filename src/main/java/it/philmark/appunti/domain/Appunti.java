@@ -8,7 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Appunti extends BaseEntity {
@@ -19,7 +21,9 @@ public class Appunti extends BaseEntity {
 	private String sottotitolo;
 	private String testo;
 	
-	
+	@ManyToOne
+	@JoinColumn(name="utente_id")
+	private AppUser appUser;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Tag> tags= new ArrayList<>();
 
