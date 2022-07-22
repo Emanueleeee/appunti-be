@@ -1,7 +1,9 @@
 package it.philmark.appunti.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,14 +13,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Appunti extends BaseEntity {
+@Table(name = "Appunti")
+public class Appunti extends BaseEntity implements Serializable {
 	
 
-
+        @Id
+        @GeneratedValue(strategy= GenerationType.IDENTITY)
+        private Long id;
+        @Column(name="titolo")
 	private String titolo;
+        @Column(name="sottotitolo")
 	private String sottotitolo;
+        @Column(name="testo")
 	private String testo;
 	
 	@ManyToOne
@@ -65,6 +74,14 @@ public class Appunti extends BaseEntity {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 	
 	

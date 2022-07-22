@@ -29,7 +29,7 @@ public class UserserviceApplication {
 //                userService.saveRole(new Role(null,"ROLE_ADMIN"));
 //                
 //                userService.saveUser(new AppUser(null,"Hank ca","Hank","1234", new ArrayList<>()));
-//                userService.saveUser(new AppUser(null,"FRankd","Papa","1234", new ArrayList<>()));
+//                userService.saveUser(new AppUser(null,"FRankd","Hank","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Mufasa","Carl","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Prat","Sdenf","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Johnny","Sbaunch","1234", new ArrayList<>()));

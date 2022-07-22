@@ -4,7 +4,13 @@
  */
 package it.philmark.appunti.domain;
 
+import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**
@@ -12,20 +18,31 @@ import javax.persistence.Entity;
  * @author crist
  */
 @Entity
-public class Tag extends BaseEntity
+@Table(name = "Tag")
+public class Tag implements Serializable
 {
+    
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(unique=true, name="name",length=50)
+    private String name;
 
-    private String descrizione;
-
-
-    public String getDescrizione()
-    {
-        return descrizione;
+    public Long getId() {
+        return id;
     }
 
-    public void setDescrizione(String descrizione)
-    {
-        this.descrizione = descrizione;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
     

@@ -5,6 +5,7 @@
  */
 package it.philmark.appunti.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,20 +20,26 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
  * @author Emanuele
  */
 @Entity
-public class AppUser extends BaseEntity {
+@Table(name="AppUser")
+public class AppUser implements Serializable {
 	
-
-    @Column(unique=true)
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="Id")
+    private Long id;
+    @Column(unique=true,name="username", length=50)
     private String username;
+    @Column(name="name")
     private String name;
+    @Column(name="password",nullable=false)
     private String password;
     
     
@@ -88,6 +95,14 @@ public class AppUser extends BaseEntity {
         this.password = password;
         this.roles=list;
        
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }
