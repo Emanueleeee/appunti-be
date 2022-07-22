@@ -5,6 +5,7 @@
 package it.philmark.appunti.Controller;
 
 import it.philmark.appunti.domain.Appunti;
+import it.philmark.appunti.service.ServiceAppuntiImpl;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Emanuele
  */
-public interface Services {
+public interface AppUserService {
   
     //Metodi Ruoli
     Role saveRole(Role role);

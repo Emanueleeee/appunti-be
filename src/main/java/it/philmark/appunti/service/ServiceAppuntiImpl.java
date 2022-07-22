@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import it.philmark.appunti.domain.Appunti;
+import it.philmark.appunti.domain.Tag;
 import it.philmark.appunti.repository.AppuntiRepo;
+import it.philmark.appunti.repository.TagRepo;
 
 public class ServiceAppuntiImpl implements ServiceAppunti{
 
 	@Autowired
     AppuntiRepo appuntiRepo;
-	
+	@Autowired
+    TagRepo tagRepo;
 	@Override
 	public Appunti saveAppunti(Appunti appunti) {
 		return appuntiRepo.save(appunti);
@@ -34,6 +37,12 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
 		
 		 return appuntiRepo.findAllByAppUserId(id);
 	}
+        
+        public void addTagToAppunti(String titolo, String name) {
+         Appunti appunti = appuntiRepo.findByTitolo(titolo);
+        Tag tag = tagRepo.findByName(name);
+        appunti.getTags().add(tag);
+    }
 	
 	
 }

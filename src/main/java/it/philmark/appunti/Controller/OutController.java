@@ -14,7 +14,7 @@ import it.philmark.appunti.domain.AppUser;
 import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.domain.Role;
 import it.philmark.appunti.domain.Tag;
-import it.philmark.appunti.service.ServicesImpl;
+import it.philmark.appunti.service.AppUserServicesImpl;
 
 import java.io.IOException;
 import java.net.URI;
@@ -52,33 +52,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @CrossOrigin("*")
 @RestController
 @Slf4j
-public class Controller01 {
+public class OutController {
 
     @Autowired
-    ServicesImpl servImpl;
-    
-    @GetMapping(value = {"/usersList"})
-    public ResponseEntity<List<AppUser>> getUsers() {
-        return ResponseEntity.ok().body(servImpl.getUsers());
-    }
-
-    @PostMapping(value = {"/saveUser"})
-    public ResponseEntity<AppUser> getUser(@RequestBody AppUser user) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/saveUser").toUriString());
-        return ResponseEntity.created(uri).body(servImpl.saveUser(user));
-    }
-
-    @RequestMapping(value = {"/saveRole"})
-    public ResponseEntity<Role> getRole(@RequestBody Role role) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/saveRole").toUriString());
-        return ResponseEntity.created(uri).body(servImpl.saveRole(role));
-    }
-
-    @RequestMapping(value = {"/addRoleToUser"})
-    public ResponseEntity<?> addRoleToUser(@RequestBody String username, String name) {
-        servImpl.addRoleToUser(username, name);
-        return ResponseEntity.ok().build();
-    }
+    AppUserServicesImpl servImpl;
 
     @GetMapping(value = {"/refreshToken"})
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -104,7 +81,7 @@ public class Controller01 {
                 response.setContentType(APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(), tokens);
             } catch (Exception exception) {
-               // log.error("Error logging in" + exception.getMessage());
+                // log.error("Error logging in" + exception.getMessage());
                 response.setHeader("error", exception.getMessage());
                 response.setStatus(HttpStatus.FORBIDDEN.value());
                 //response.sendError(HttpStatus.FORBIDDEN.value());
@@ -118,12 +95,12 @@ public class Controller01 {
             throw new RuntimeException("RefreshToken is missing");
         }
     }
-    
+
     //************************************
-    @PostMapping(value={"/login"})
+    @PostMapping(value = {"/login"})
     @ResponseBody
-    public UserDetails login(@RequestBody String username){
+    public UserDetails login(@RequestBody String username) {
         return this.servImpl.loadUserByUsername(username);
     }
-    
+
 }

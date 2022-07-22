@@ -5,7 +5,8 @@
 package it.philmark.appunti.Controller;
 
 import it.philmark.appunti.domain.Tag;
-import it.philmark.appunti.service.ServicesImpl;
+import it.philmark.appunti.service.AppUserServicesImpl;
+import it.philmark.appunti.service.ServiceTagImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,11 +35,4 @@ public class TagController
         return this.serviceTagImpl.saveTag(tag);
     }
     
-    @PostMapping(value ={"/aggiungiTagAppunti"})
-    @ResponseBody
-    public void aggiungiTagAppunti(
-            @RequestBody String titolo, String descizione)
-    {
-        this.serviceTagImpl.addTagToAppunti(titolo, descizione);
-    }
 }

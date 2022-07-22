@@ -2,7 +2,7 @@ package it.philmark.appunti;
 
 import it.philmark.appunti.domain.AppUser;
 import it.philmark.appunti.domain.Role;
-import it.philmark.appunti.service.ServicesImpl;
+import it.philmark.appunti.service.AppUserServicesImpl;
 import java.util.ArrayList;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,7 +29,7 @@ public class UserserviceApplication {
 //                userService.saveRole(new Role(null,"ROLE_ADMIN"));
 //                
 //                userService.saveUser(new AppUser(null,"Hank ca","Hank","1234", new ArrayList<>()));
-//                userService.saveUser(new AppUser(null,"FRankd","Hank","1234", new ArrayList<>()));
+//                userService.saveUser(new AppUser(null,"FRankd","PatrickPulcini","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Mufasa","Carl","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Prat","Sdenf","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"Johnny","Sbaunch","1234", new ArrayList<>()));

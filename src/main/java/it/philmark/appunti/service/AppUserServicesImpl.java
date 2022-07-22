@@ -38,7 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional//Serve per mettere many to many subito
 @Slf4j
-public class ServicesImpl implements Services, UserDetailsService {
+public class AppUserServicesImpl implements AppUserService, UserDetailsService {
 
     @Autowired
     UserRepo repoUser;
@@ -48,7 +48,7 @@ public class ServicesImpl implements Services, UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public ServicesImpl(PasswordEncoder passwordEncoder) {
+    public AppUserServicesImpl(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
