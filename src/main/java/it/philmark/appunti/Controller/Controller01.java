@@ -36,6 +36,7 @@ import org.springframework.http.HttpStatus;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -157,6 +158,12 @@ public class Controller01 {
             @RequestBody Tag tag)
     {
         return this.servImpl.saveTag(tag);
+    }
+    
+    @PostMapping(value={"/login"})
+    @ResponseBody
+    public UserDetails login(@RequestBody String username){
+        return this.servImpl.loadUserByUsername(username);
     }
     
     @PostMapping(value ={"/aggiungiTagAppunti"})

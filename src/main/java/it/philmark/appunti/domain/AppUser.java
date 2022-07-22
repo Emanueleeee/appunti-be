@@ -82,12 +82,12 @@ public class AppUser extends BaseEntity {
         this.roles = roles;
     }
 
-    public AppUser(Long id, String name, String username, String password,ArrayList<Role> list, ArrayList<Appunti> appunti) {
+    public AppUser(Long id, String name, String username, String password,ArrayList<Role> list) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.roles=list;
-        this.listaAppunti=appunti;
+       
     }
     
 }
