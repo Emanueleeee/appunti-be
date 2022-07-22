@@ -44,10 +44,8 @@ public class ServicesImpl implements Services, UserDetailsService {
     UserRepo repoUser;
     @Autowired
     RoleRepo repoRole;
-    @Autowired
-    AppuntiRepo appuntiRepo;
-    @Autowired
-    TagRepo repoTag;
+  
+
     private final PasswordEncoder passwordEncoder;
 
     public ServicesImpl(PasswordEncoder passwordEncoder) {
@@ -97,5 +95,6 @@ public class ServicesImpl implements Services, UserDetailsService {
         return userDetails;
 
     }
+
 
 }

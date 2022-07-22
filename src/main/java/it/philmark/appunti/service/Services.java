@@ -16,15 +16,11 @@ import java.util.List;
  * @author Emanuele
  */
 public interface Services {
-
+  
     //Metodi Ruoli
     Role saveRole(Role role);
     void addRoleToUser(String username, String name);
 
-    //Metodi Tag
-    void addTagToAppunti(String titolo, String descrizione);//Da chiedere idea ad ogni titolo appunti i tag
-     Tag saveTag(Tag tag);
-    
     
     
     
