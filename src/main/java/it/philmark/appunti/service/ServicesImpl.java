@@ -98,36 +98,4 @@ public class ServicesImpl implements Services, UserDetailsService {
 
     }
 
-    @Override
-    public Appunti saveAppunti(Appunti appunti) {
-        return appuntiRepo.save(appunti);
-    }
-
-    @Override
-    public void appuntiDel(Appunti appunti) {
-        appuntiRepo.delete(appunti);
-    }
-
-    @Override
-    public List<Appunti> listaAppunti() {
-        return appuntiRepo.findAll();
-    }
-
-    @Override
-    public List<Appunti> listaAppuntiPerUtente(Long id) {
-        return appuntiRepo.findAllByAppUserId(id);
-    }
-
-    @Override
-    public void addTagToAppunti(String titolo, String descrizione) {
-        Appunti appunti = appuntiRepo.findByTitolo(titolo);
-        Tag tag = repoTag.findByDescrizione(descrizione);
-        appunti.getTags().add(tag);
-    }
-
-    @Override
-    public Tag saveTag(Tag tag) {
-        return repoTag.save(tag);
-    }
-
 }
