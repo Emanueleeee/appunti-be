@@ -20,7 +20,10 @@ public interface Services {
     //Metodi Ruoli
     Role saveRole(Role role);
     void addRoleToUser(String username, String name);
-
+    //Metodi Users
+    AppUser saveUser(AppUser user);
+    AppUser getUser(String username);
+    List<AppUser>getUsers();
     
     
     
