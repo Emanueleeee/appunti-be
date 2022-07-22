@@ -14,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface TagRepo extends JpaRepository<Tag, Long>
 {
-    Tag findByDescrizione(String descrizione);
+    Tag findByName(String descrizione);
 }

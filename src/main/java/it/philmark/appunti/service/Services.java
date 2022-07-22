@@ -16,22 +16,14 @@ import java.util.List;
  * @author Emanuele
  */
 public interface Services {
-    //Metodi Utente
-    AppUser saveUser(AppUser user);
-    AppUser getUser(String username);
-    List<AppUser>getUsers();
+  
     //Metodi Ruoli
     Role saveRole(Role role);
     void addRoleToUser(String username, String name);
-    //Metodi Appunti
-     Appunti saveAppunti(Appunti appunti);
-    public void appuntiDel(Appunti appunti);
-    public List<Appunti>listaAppunti();
-    public List<Appunti>listaAppuntiPerUtente(Long id);
-    //Metodi Tag
-    void addTagToAppunti(String titolo, String descrizione);//Da chiedere idea ad ogni titolo appunti i tag
-     Tag saveTag(Tag tag);
-    
+    //Metodi Users
+    AppUser saveUser(AppUser user);
+    AppUser getUser(String username);
+    List<AppUser>getUsers();
     
     
     
