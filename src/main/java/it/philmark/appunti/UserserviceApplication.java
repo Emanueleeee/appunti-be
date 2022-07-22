@@ -26,9 +26,7 @@ public class UserserviceApplication {
 //        CommandLineRunner run (ServicesImpl userService){
 //            return args -> {
 //                userService.saveRole(new Role(null,"ROLE_USER"));
-//                userService.saveRole(new Role(null,"ROLE_MANAGER"));
 //                userService.saveRole(new Role(null,"ROLE_ADMIN"));
-//                userService.saveRole(new Role(null,"ROLE_SUPER_ADMIN"));
 //                
 //                userService.saveUser(new AppUser(null,"Hank ca","Hank","1234", new ArrayList<>()));
 //                userService.saveUser(new AppUser(null,"FRankd","Papa","1234", new ArrayList<>()));
@@ -37,11 +35,11 @@ public class UserserviceApplication {
 //                userService.saveUser(new AppUser(null,"Johnny","Sbaunch","1234", new ArrayList<>()));
 //                
 //                userService.addRoleToUser("Hank", "ROLE_USER");//Attenzione se dovete rifare il bean scriveteli tutti in maiuscuolo i ruoli es ROLE_USER
-//                userService.addRoleToUser("Papa", "ROLE_MANAGER");
+//                userService.addRoleToUser("Papa", "ROLE_ADMIN");
 //                userService.addRoleToUser("Carl", "ROLE_ADMIN");
-//                userService.addRoleToUser("Sdenf", "ROLE_SUPER_ADMIN");
+//                userService.addRoleToUser("Sdenf", "ROLE_USER");
 //                userService.addRoleToUser("Sdenf", "ROLE_ADMIN");
-//                userService.addRoleToUser("Sbaunch", "ROLE_MANAGER");
+//                userService.addRoleToUser("Sbaunch", "ROLE_USER");
 //                
 //                
 //            };

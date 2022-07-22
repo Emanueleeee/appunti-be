@@ -11,7 +11,9 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.philmark.appunti.domain.AppUser;
+import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.domain.Role;
+import it.philmark.appunti.domain.Tag;
 import it.philmark.appunti.service.ServicesImpl;
 
 import java.io.IOException;
@@ -34,11 +36,13 @@ import org.springframework.http.HttpStatus;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -52,7 +56,7 @@ public class Controller01 {
 
     @Autowired
     ServicesImpl servImpl;
-
+    
     @GetMapping(value = {"/usersList"})
     public ResponseEntity<List<AppUser>> getUsers() {
         return ResponseEntity.ok().body(servImpl.getUsers());
@@ -114,6 +118,59 @@ public class Controller01 {
             throw new RuntimeException("RefreshToken is missing");
         }
     }
-
-//
+    
+    //************************************
+    
+    @PostMapping(value ={"/salvaAppunti"})
+    @ResponseBody
+    public Appunti salvaAppunti(
+            @RequestBody Appunti appunti)
+    {
+        return this.servImpl.saveAppunti(appunti);
+    }
+    
+    @PostMapping(value ={"/cancellaAppunti"})
+    @ResponseBody
+    public void cancellaAppunti(
+            @RequestBody Appunti appunti)
+    {
+        this.servImpl.appuntiDel(appunti);
+    }
+    
+    @GetMapping(value ={"/listaAppunti"})
+    @ResponseBody
+    public List<Appunti> listaAppunti()
+    {
+        return this.servImpl.listaAppunti();
+    }
+    
+    @PostMapping(value ={"/listaAppuntiUtente"})
+    @ResponseBody
+    public List<Appunti> listaAppuntiUtente(
+            @RequestBody Long id)
+    {
+        return this.servImpl.listaAppuntiPerUtente(id);
+    }
+    
+    @PostMapping(value ={"/salvaTag"})//Si puo togliere perche saveAppunti fa tutto lui
+    @ResponseBody
+    public Tag salvaTag(
+            @RequestBody Tag tag)
+    {
+        return this.servImpl.saveTag(tag);
+    }
+    
+    @PostMapping(value={"/login"})
+    @ResponseBody
+    public UserDetails login(@RequestBody String username){
+        return this.servImpl.loadUserByUsername(username);
+    }
+    
+    @PostMapping(value ={"/aggiungiTagAppunti"})
+    @ResponseBody
+    public void aggiungiTagAppunti(
+            @RequestBody String titolo, String descizione)
+    {
+        this.servImpl.addTagToAppunti(titolo, descizione);
+    }
 }
