@@ -120,57 +120,10 @@ public class Controller01 {
     }
     
     //************************************
-    
-    @PostMapping(value ={"/salvaAppunti"})
-    @ResponseBody
-    public Appunti salvaAppunti(
-            @RequestBody Appunti appunti)
-    {
-        return this.servImpl.saveAppunti(appunti);
-    }
-    
-    @PostMapping(value ={"/cancellaAppunti"})
-    @ResponseBody
-    public void cancellaAppunti(
-            @RequestBody Appunti appunti)
-    {
-        this.servImpl.appuntiDel(appunti);
-    }
-    
-    @GetMapping(value ={"/listaAppunti"})
-    @ResponseBody
-    public List<Appunti> listaAppunti()
-    {
-        return this.servImpl.listaAppunti();
-    }
-    
-    @PostMapping(value ={"/listaAppuntiUtente"})
-    @ResponseBody
-    public List<Appunti> listaAppuntiUtente(
-            @RequestBody Long id)
-    {
-        return this.servImpl.listaAppuntiPerUtente(id);
-    }
-    
-    @PostMapping(value ={"/salvaTag"})//Si puo togliere perche saveAppunti fa tutto lui
-    @ResponseBody
-    public Tag salvaTag(
-            @RequestBody Tag tag)
-    {
-        return this.servImpl.saveTag(tag);
-    }
-    
     @PostMapping(value={"/login"})
     @ResponseBody
     public UserDetails login(@RequestBody String username){
         return this.servImpl.loadUserByUsername(username);
     }
     
-    @PostMapping(value ={"/aggiungiTagAppunti"})
-    @ResponseBody
-    public void aggiungiTagAppunti(
-            @RequestBody String titolo, String descizione)
-    {
-        this.servImpl.addTagToAppunti(titolo, descizione);
-    }
 }
