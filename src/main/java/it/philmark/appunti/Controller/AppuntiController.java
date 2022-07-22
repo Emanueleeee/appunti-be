@@ -6,6 +6,7 @@ package it.philmark.appunti.Controller;
 
 import it.philmark.appunti.domain.Appunti;
 import it.philmark.appunti.service.ServiceAppuntiImpl;
+import it.philmark.appunti.service.ServiceTagImpl;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class AppuntiController
 {
     @Autowired
     ServiceAppuntiImpl serviceAppuntiImpl;
+    
     
     @PostMapping(value ={"/salvaAppunti"})
     @ResponseBody
@@ -58,5 +60,11 @@ public class AppuntiController
     {
         return this.serviceAppuntiImpl.listaAppuntiPerUtente(id);
     }
-    
+    @PostMapping(value ={"/aggiungiTagAppunti"})
+    @ResponseBody
+    public void aggiungiTagAppunti(
+            @RequestBody String titolo, String descizione)
+    {
+        this.serviceAppuntiImpl.addTagToAppunti(titolo, descizione);
+    }
 }
