@@ -17,22 +17,13 @@ import java.time.LocalDate;
  */
 @MappedSuperclass
 public class BaseEntity {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    
     private LocalDate dataCreazione;
     private LocalDate dataModifica;
     private String utenteCreazione;
     private String utenteModifica;
     
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+   
     public LocalDate getDataCreazione() {
         return dataCreazione;
     }
