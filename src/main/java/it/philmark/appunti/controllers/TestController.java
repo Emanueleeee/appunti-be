@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.controllers;
+package it.philmark.appunti.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

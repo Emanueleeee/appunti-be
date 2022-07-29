@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.payload.response;
+package it.philmark.appunti.payload.response;
 
 import java.util.List;
 

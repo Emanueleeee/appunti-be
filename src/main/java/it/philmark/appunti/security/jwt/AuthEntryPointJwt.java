@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.security.jwt;
+package it.philmark.appunti.security.jwt;
 
 import java.io.IOException;
 

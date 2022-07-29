@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.models;
+package it.philmark.appunti.models;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.security;
+package it.philmark.appunti.securityConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.bezkoder.springjwt.security.jwt.AuthEntryPointJwt;
-import com.bezkoder.springjwt.security.jwt.AuthTokenFilter;
-import com.bezkoder.springjwt.security.services.UserDetailsServiceImpl;
+import it.philmark.appunti.security.jwt.AuthEntryPointJwt;
+import it.philmark.appunti.security.jwt.AuthTokenFilter;
+import it.philmark.appunti.security.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
