@@ -35,7 +35,7 @@ import it.philmark.appunti.security.service.UserDetailsImpl;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class OutController {
 	@Autowired
 	AuthenticationManager authenticationManager;
 
