@@ -1,6 +1,8 @@
 package it.philmark.appunti.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -9,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(	name = "users", 
+@Table(	name = "user", 
 		uniqueConstraints = { 
 			@UniqueConstraint(columnNames = "username"),
 			@UniqueConstraint(columnNames = "email") 
@@ -37,7 +39,14 @@ public class User {
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+ @OneToMany(cascade=CascadeType.ALL,
+            fetch=FetchType.LAZY,
+            mappedBy="user")
+    private List<Appunti> listaAppunti=new ArrayList<>();
 
+    public void setListaAppunti(List<Appunti> listaAppunti) {
+        this.listaAppunti = listaAppunti;
+    }
 	public User() {
 	}
 

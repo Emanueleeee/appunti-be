@@ -42,7 +42,7 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
     @Override
     public List<Appunti> listaAppuntiPerUtente(Long id) {
 
-        return appuntiRepo.findAllByAppUserId(id);
+        return appuntiRepo.findAllByUserId(id);
     }
 
     @Override

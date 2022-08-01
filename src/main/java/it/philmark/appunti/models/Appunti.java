@@ -31,8 +31,8 @@ public class Appunti extends BaseEntity implements Serializable {
     private String testo;
 
     @ManyToOne
-    @JoinColumn(name="app_user_id")
-    private User appUser;
+    @JoinColumn(name="user_id")
+    private User user;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Tag> tags= new ArrayList<>();
 
@@ -68,12 +68,12 @@ public class Appunti extends BaseEntity implements Serializable {
         this.testo = testo;
     }
 
-    public User getAppUser() {
-        return appUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setAppUser(User appUser) {
-        this.appUser = appUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
