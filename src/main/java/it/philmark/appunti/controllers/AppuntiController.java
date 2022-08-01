@@ -42,6 +42,7 @@ public class AppuntiController
     }
 
     @GetMapping(value ={"/listaAppunti"})
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
     public List<Appunti> listaAppunti()
     {
@@ -49,7 +50,6 @@ public class AppuntiController
     }
 
     @PostMapping(value ={"/listaAppuntiUtente"})
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody
     public List<Appunti> listaAppuntiUtente(
             @RequestBody Long id)
