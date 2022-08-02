@@ -28,9 +28,10 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
     }
 
     @Override
-    public void appuntiDel(Appunti appunti) {
+    public List<Appunti> appuntiDel(Appunti appunti) {
 
         appuntiRepo.delete(appunti);
+        return appuntiRepo.findAll();
     }
 
     @Override

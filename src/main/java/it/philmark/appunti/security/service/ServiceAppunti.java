@@ -10,7 +10,7 @@ public interface ServiceAppunti {
 
     Appunti saveAppunti(Appunti appunti);
 
-    public void appuntiDel(Appunti appunti);
+    public List<Appunti> appuntiDel(Appunti appunti);
 
     public List<Appunti> listaAppunti();
 

@@ -35,10 +35,10 @@ public class AppuntiController
 
     @PostMapping(value ={"/cancellaAppunti"})
     @ResponseBody
-    public void cancellaAppunti(
+    public List<Appunti> cancellaAppunti(
             @RequestBody Appunti appunti)
     {
-        this.serviceAppuntiImpl.appuntiDel(appunti);
+        return this.serviceAppuntiImpl.appuntiDel(appunti);
     }
 
     @GetMapping(value ={"/listaAppunti"})
