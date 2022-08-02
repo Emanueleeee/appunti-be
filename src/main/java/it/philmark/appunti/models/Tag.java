@@ -1,12 +1,9 @@
 package it.philmark.appunti.models;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 
 
 /**
@@ -25,6 +22,13 @@ public class Tag implements Serializable
     @Column(unique=true, name="name",length=50)
     private String name;
 
+    @ManyToMany(fetch=FetchType.EAGER,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },mappedBy="tags")
+    private List<Appunti> listaAppunti= new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -41,6 +45,8 @@ public class Tag implements Serializable
         this.name = name;
     }
 
-
+    public void setListaAppunti(List<Appunti> listaAppunti) {
+        this.listaAppunti = listaAppunti;
+    }
 }
 

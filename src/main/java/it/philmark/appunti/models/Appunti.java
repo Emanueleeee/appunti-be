@@ -3,17 +3,7 @@ package it.philmark.appunti.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Appunti")
@@ -33,7 +23,15 @@ public class Appunti extends BaseEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = { //quindi per salvare la relazione
+                    CascadeType.PERSIST, //salveró la prenotazione e spring salvera entrambe
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = "appuntiTags",
+            joinColumns = @JoinColumn(name = "appunti_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_id"))
     private List<Tag> tags= new ArrayList<>();
 
     public List<Tag> getTags() {
@@ -83,6 +81,7 @@ public class Appunti extends BaseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
 
 
 
