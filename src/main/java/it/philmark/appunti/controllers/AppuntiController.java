@@ -56,12 +56,12 @@ public class AppuntiController
     {
         return this.serviceAppuntiImpl.listaAppuntiPerUtente(id);
     }
-    @PostMapping(value ={"/aggiungiTagAppunti"})
-    @ResponseBody
-    public void aggiungiTagAppunti(
-            @RequestBody String titolo, String name)
-    {
-        this.serviceAppuntiImpl.addTagToAppunti(titolo, name);
-    }
+//    @PostMapping(value ={"/aggiungiTagAppunti"})
+//    @ResponseBody
+//    public void aggiungiTagAppunti(
+//            @RequestBody String titolo, String name)
+//    {
+//        this.serviceAppuntiImpl.addTagToAppunti(titolo, name);
+//    }
 }
 

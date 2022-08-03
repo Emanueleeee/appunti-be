@@ -6,7 +6,7 @@ import it.philmark.appunti.models.Appunti;
 
 public interface ServiceAppunti {
 
-    void addTagToAppunti(String titolo, String descrizione);//Da chiedere idea ad ogni titolo appunti i tag
+//    void addTagToAppunti(String titolo, String descrizione);//Da chiedere idea ad ogni titolo appunti i tag
 
     Appunti saveAppunti(Appunti appunti);
 

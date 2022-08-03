@@ -12,6 +12,7 @@ public class Appunti extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column (name="Id")
     private Long id;
     @Column(name="titolo")
     private String titolo;
@@ -23,20 +24,25 @@ public class Appunti extends BaseEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-    @ManyToMany(fetch = FetchType.EAGER)
+//     @ManyToMany(fetch = FetchType.LAZY, //qui definiusco la join table
+//            cascade = { //quindi per salvare la relazione
+//                CascadeType.MERGE,
+//                CascadeType.PERSIST, //salveró la prenotazione e spring salvera entrambe
+//            })
+//    @JoinTable(
+//            name = "appuntiTag",
+//            joinColumns = @JoinColumn(name = "AppuntiId"),
+//            inverseJoinColumns = @JoinColumn(name = "TagId"))
+//    private List<Tag> listaTag= new ArrayList<>();
+
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(
-            name = "appuntiTags",
-            joinColumns = @JoinColumn(name = "appuntiId"),
-            inverseJoinColumns = @JoinColumn(name = "tagsId"))
-    private List<Tag> tags= new ArrayList<>();
+           name = "appunti_tag", 
+           joinColumns = @JoinColumn(name = "appunti_id"), 
+           inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> listaTag = new ArrayList<>();
 
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
+   
 
     public String getTitolo() {
         return titolo;
@@ -76,6 +82,14 @@ public class Appunti extends BaseEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Tag> getListaTag() {
+        return listaTag;
+    }
+
+    public void setListaTag(List<Tag> listaTag) {
+        this.listaTag = listaTag;
     }
 
 
