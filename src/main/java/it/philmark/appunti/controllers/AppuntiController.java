@@ -59,9 +59,9 @@ public class AppuntiController
     @PostMapping(value ={"/aggiungiTagAppunti"})
     @ResponseBody
     public void aggiungiTagAppunti(
-            @RequestBody String titolo, String descizione)
+            @RequestBody String titolo, String name)
     {
-        this.serviceAppuntiImpl.addTagToAppunti(titolo, descizione);
+        this.serviceAppuntiImpl.addTagToAppunti(titolo, name);
     }
 }
 

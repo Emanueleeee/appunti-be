@@ -23,10 +23,8 @@ public class Tag implements Serializable
     private String name;
 
     @ManyToMany(fetch=FetchType.EAGER,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },mappedBy="tags")
+                cascade = { CascadeType.ALL },
+                mappedBy="tags")
     private List<Appunti> listaAppunti= new ArrayList<>();
 
     public Long getId() {

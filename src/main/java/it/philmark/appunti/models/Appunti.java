@@ -23,15 +23,11 @@ public class Appunti extends BaseEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = { //quindi per salvare la relazione
-                    CascadeType.PERSIST, //salveró la prenotazione e spring salvera entrambe
-                    CascadeType.MERGE
-            })
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "appuntiTags",
-            joinColumns = @JoinColumn(name = "appunti_id"),
-            inverseJoinColumns = @JoinColumn(name = "tags_id"))
+            joinColumns = @JoinColumn(name = "appuntiId"),
+            inverseJoinColumns = @JoinColumn(name = "tagsId"))
     private List<Tag> tags= new ArrayList<>();
 
     public List<Tag> getTags() {
