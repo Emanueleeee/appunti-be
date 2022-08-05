@@ -18,8 +18,8 @@ public class JwtUtils {
 	@Value("${bezkoder.app.jwtSecret}")
 	private String jwtSecret;
 
-	//@Value("${bezkoder.app.jwtExpirationMs}")
-	//private int jwtExpirationMs;
+	@Value("${bezkoder.app.jwtExpirationMs}")
+	private int jwtExpirationMs;
 
 	public String generateJwtToken(Authentication authentication) {
 
@@ -32,18 +32,6 @@ public class JwtUtils {
 				.signWith(SignatureAlgorithm.HS512, jwtSecret)
 				.compact();
 		return accessToken;
-	}
-	public String generateJwtRefreshToken(Authentication authentication) {
-
-		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-
-		String refreshToken = Jwts.builder()
-				.setSubject((userPrincipal.getUsername()))
-				.setIssuedAt(new Date())
-				.setExpiration(new Date(System.currentTimeMillis() + 40 * 80 * 1000))
-				.signWith(SignatureAlgorithm.HS512, jwtSecret)
-				.compact();
-		return refreshToken;
 	}
 
 	public String getUserNameFromJwtToken(String token) {
