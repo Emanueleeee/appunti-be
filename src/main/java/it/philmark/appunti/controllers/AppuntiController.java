@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author crist
- */
+
 @CrossOrigin("*")
 @RestController
 @Slf4j
@@ -56,12 +53,6 @@ public class AppuntiController
     {
         return this.serviceAppuntiImpl.listaAppuntiPerUtente(id);
     }
-//    @PostMapping(value ={"/aggiungiTagAppunti"})
-//    @ResponseBody
-//    public void aggiungiTagAppunti(
-//            @RequestBody String titolo, String name)
-//    {
-//        this.serviceAppuntiImpl.addTagToAppunti(titolo, name);
-//    }
+
 }
 

@@ -15,29 +15,11 @@ import javax.persistence.*;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private Long id;
-
-    @Column(unique = true, name = "name", length = 50)
+    @Column( name = "name", length = 50)
     private String name;
-    
-//     @ManyToMany(fetch=FetchType.LAZY,
-//            cascade = {
-//                CascadeType.MERGE,
-//                CascadeType.PERSIST
-//               
-//            },mappedBy="listaTag")
+
     @ManyToMany(mappedBy = "listaTag")
     private List<Appunti> listaAppunti = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
