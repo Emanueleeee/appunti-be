@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RefreshTokenService {
-    @Value("${bezkoder.app.jwtRefreshExpirationMs}")
+    @Value("${it.philmark.appunti.jwtRefreshExpirationMs}")
     private Long refreshTokenDurationMs;
     @Autowired
     private RefreshTokenRepository refreshTokenRepository;
