@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import it.philmark.appunti.models.RefreshToken;
+import it.philmark.appunti.payload.request.TokenRefreshRequest;
+import it.philmark.appunti.payload.response.TokenRefreshException;
+import it.philmark.appunti.payload.response.TokenRefreshResponse;
+import it.philmark.appunti.security.service.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,6 +55,8 @@ public class AuthController {
 
 	@Autowired
 	JwtUtils jwtUtils;
+	@Autowired
+	RefreshTokenService refreshTokenService;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -64,12 +71,25 @@ public class AuthController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-
-		return ResponseEntity.ok(new JwtResponse(jwt,
+		RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
+		return ResponseEntity.ok(new JwtResponse(jwt,refreshToken.getToken(),
 												 userDetails.getId(), 
 												 userDetails.getUsername(), 
 												 userDetails.getEmail(), 
 												 roles));
+	}
+	@PostMapping("/refreshtoken")
+	public ResponseEntity<?> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
+		String requestRefreshToken = request.getRefreshToken();
+		return refreshTokenService.findByToken(requestRefreshToken)
+				.map(refreshTokenService::verifyExpiration)
+				.map(RefreshToken::getUser)
+				.map(user -> {
+					String token = jwtUtils.generateTokenFromUsername(user.getUsername());
+					return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
+				})
+				.orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
+						"Refresh token is not in database!"));
 	}
 
 	@PostMapping("/registrazione")
