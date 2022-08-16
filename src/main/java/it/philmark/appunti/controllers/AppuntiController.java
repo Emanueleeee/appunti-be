@@ -54,5 +54,10 @@ public class AppuntiController
         return this.serviceAppuntiImpl.listaAppuntiPerUtente(id);
     }
 
+    @PostMapping(value ={"/addTagToAppunti"})
+    @ResponseBody
+    public void addTagToAppunti(@RequestBody Long id, @RequestBody String name){
+        this.serviceAppuntiImpl.addTagToAppunti(id, name);
+    }
 }
 
