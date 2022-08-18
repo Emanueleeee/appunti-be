@@ -49,15 +49,19 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
 
     @Override
     public List<Appunti> listaAppuntiPerUtente(Long id) {
-
         return appuntiRepo.findAllByUserId(id);
     }
-
+    /*
     @Override
     public void addTagToAppunti(Long id, String name) {
         Appunti appunti = appuntiRepo.findById(id).get();
         Tag tag = tagRepo.findByName(name);
         appunti.getListaTag().add(tag);
+    }
+    */
+    @Override
+    public Appunti appuntoXId(Long id){
+        return appuntiRepo.findById(id).get();
     }
 
 
