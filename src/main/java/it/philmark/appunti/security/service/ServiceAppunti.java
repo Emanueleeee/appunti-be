@@ -6,7 +6,7 @@ import it.philmark.appunti.models.Appunti;
 
 public interface ServiceAppunti {
 
-//    void addTagToAppunti(String titolo, String descrizione);//Da chiedere idea ad ogni titolo appunti i tag
+    //void addTagToAppunti(Long id, String name);//Da chiedere idea ad ogni titolo appunti i tag
 
     Appunti saveAppunti(Appunti appunti);
 
@@ -15,5 +15,6 @@ public interface ServiceAppunti {
     public List<Appunti> listaAppunti();
 
     public List<Appunti> listaAppuntiPerUtente(Long id);
+    public Appunti appuntoXId(Long id);
 
 }

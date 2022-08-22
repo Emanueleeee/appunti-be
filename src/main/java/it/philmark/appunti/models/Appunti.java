@@ -25,7 +25,7 @@ public class Appunti extends BaseEntity implements Serializable {
     @JoinColumn(name="user_id")
     private User user;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.MERGE)
     @JoinTable(
            name = "appunti_tag", 
            joinColumns = @JoinColumn(name = "appunti_id"), 

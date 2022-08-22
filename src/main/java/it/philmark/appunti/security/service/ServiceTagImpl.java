@@ -20,5 +20,9 @@ public class ServiceTagImpl implements ServiceTag {
         return tagRepo.save(tag);
     }
 
+    @Override
+    public Tag cercaTag(String name) {
+        return tagRepo.findByName(name);
+    }
 }
 
