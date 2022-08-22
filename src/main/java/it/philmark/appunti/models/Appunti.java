@@ -35,7 +35,8 @@ public class Appunti extends BaseEntity implements Serializable {
            inverseJoinColumns = @JoinColumn(name = "tag_name"))
     private List<Tag> listaTag = new ArrayList<>();
 
-   
+    //dwjwfjwf
+
 
     public String getTitolo() {
         return titolo;
