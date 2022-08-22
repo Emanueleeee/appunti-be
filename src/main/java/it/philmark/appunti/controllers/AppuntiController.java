@@ -54,5 +54,11 @@ public class AppuntiController
         return this.serviceAppuntiImpl.listaAppuntiPerUtente(id);
     }
 
+    @GetMapping(value ={"/listaAppuntiPub"})
+    @ResponseBody
+    public List<Appunti> listaAppuntiPub(@RequestBody Boolean pub)
+    {
+        return this.serviceAppuntiImpl.listaAppuntiPub(pub);
+    }
 }
 

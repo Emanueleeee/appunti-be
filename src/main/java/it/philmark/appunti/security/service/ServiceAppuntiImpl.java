@@ -46,12 +46,10 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
         return appuntiRepo.findAllByUserId(id);
     }
 
-//    @Override
-//    public void addTagToAppunti(String titolo, String name) {
-//        Appunti appunti = appuntiRepo.findByTitolo(titolo);
-//        Tag tag = tagRepo.findByName(name);
-//        appunti.getListaTag().add(tag);
-//    }
+    @Override
+    public List<Appunti> listaAppuntiPub(Boolean pub) {
+            return appuntiRepo.findAllByPub(pub);
+    }
 
 
 }
