@@ -59,6 +59,7 @@ public class AppuntiController
     public List<Appunti> listaAppuntiPub(@RequestBody Boolean pub)
     {
         return this.serviceAppuntiImpl.listaAppuntiPub(pub);
+
     }
 }
 

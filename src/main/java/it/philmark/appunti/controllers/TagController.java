@@ -30,4 +30,9 @@ public class TagController
         return this.serviceTagImpl.saveTag(tag);
     }
 
+    @PostMapping(value ={"/cercaTag"})
+    @ResponseBody
+    public Tag cercaTag(@RequestBody String name){
+        return serviceTagImpl.cercaTag(name);
+    }
 }

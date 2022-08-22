@@ -5,5 +5,6 @@ import it.philmark.appunti.models.Tag;
 public interface ServiceTag {
 
     Tag saveTag(Tag tag);
+    Tag cercaTag(String name);
 }
 
