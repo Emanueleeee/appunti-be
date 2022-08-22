@@ -21,6 +21,9 @@ public class Appunti extends BaseEntity implements Serializable {
     @Column(name="testo")
     private String testo;
 
+    @Column(name="pub")
+    private Boolean pub;
+
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
@@ -82,8 +85,12 @@ public class Appunti extends BaseEntity implements Serializable {
         this.listaTag = listaTag;
     }
 
+    public Boolean getPub() {
+        return pub;
+    }
 
-
-
+    public void setPub(Boolean pub) {
+        this.pub = pub;
+    }
 }
 

@@ -53,18 +53,13 @@ public class AppuntiController
     {
         return this.serviceAppuntiImpl.listaAppuntiPerUtente(id);
     }
-    /*
-    @PostMapping(value ={"/addTagToAppunti"})
+
+    @PostMapping(value ={"/listaAppuntiPub"})
     @ResponseBody
-    public void addTagToAppunti(@RequestBody Long id, @RequestBody String name){
-        this.serviceAppuntiImpl.addTagToAppunti(id, name);
-    }
-    */
-    @PostMapping(value ={"/appuntoXId"})
-    @ResponseBody
-    public Appunti appuntoXId(@RequestBody Long id)
+    public List<Appunti> listaAppuntiPub(@RequestBody Boolean pub)
     {
-        return this.serviceAppuntiImpl.appuntoXId(id);
+        return this.serviceAppuntiImpl.listaAppuntiPub(pub);
+
     }
 }
 

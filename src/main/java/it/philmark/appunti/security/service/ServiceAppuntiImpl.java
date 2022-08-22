@@ -24,7 +24,9 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
     TagRepo tagRepo;
     @Override
     public Appunti saveAppunti(Appunti appunti) {
-        for(Tag x: appunti.getListaTag()){
+
+        for (Tag x: appunti.getListaTag()){
+
             if(tagRepo.findByName(x.getName()) != null){
                 return appuntiRepo.save(appunti);
             }else{
@@ -51,17 +53,12 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
     public List<Appunti> listaAppuntiPerUtente(Long id) {
         return appuntiRepo.findAllByUserId(id);
     }
-    /*
+
+
     @Override
-    public void addTagToAppunti(Long id, String name) {
-        Appunti appunti = appuntiRepo.findById(id).get();
-        Tag tag = tagRepo.findByName(name);
-        appunti.getListaTag().add(tag);
-    }
-    */
-    @Override
-    public Appunti appuntoXId(Long id){
-        return appuntiRepo.findById(id).get();
+    public List<Appunti> listaAppuntiPub(Boolean pub) {
+            return appuntiRepo.findAllByPub(pub);
+
     }
 
 

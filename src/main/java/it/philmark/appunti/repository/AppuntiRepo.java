@@ -12,4 +12,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AppuntiRepo extends JpaRepository<Appunti, Long> {
     List<Appunti> findAllByUserId(Long id);
+    List<Appunti> findAllByPub(Boolean pub);
 }
