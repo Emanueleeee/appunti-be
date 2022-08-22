@@ -24,6 +24,13 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
     TagRepo tagRepo;
     @Override
     public Appunti saveAppunti(Appunti appunti) {
+        for (Tag x: appunti.getListaTag()){
+            if(tagRepo.findByName(x.getName()) != null){
+                return appuntiRepo.save(appunti);
+            }else{
+                tagRepo.save(x);
+            }
+        }
         return appuntiRepo.save(appunti);
     }
 

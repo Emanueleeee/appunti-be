@@ -21,14 +21,14 @@ public class Appunti extends BaseEntity implements Serializable {
     @Column(name="testo")
     private String testo;
 
-    @Column(name="isPublic")
+    @Column(name="pub")
     private Boolean pub;
 
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.MERGE)
     @JoinTable(
            name = "appunti_tag", 
            joinColumns = @JoinColumn(name = "appunti_id"), 
