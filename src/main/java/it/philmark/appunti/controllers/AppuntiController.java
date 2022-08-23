@@ -61,5 +61,13 @@ public class AppuntiController
         return this.serviceAppuntiImpl.listaAppuntiPub(pub);
 
     }
+
+    @PostMapping(value ={"/appuntoById"})
+    @ResponseBody
+    public Appunti appuntoById(@RequestBody Long id)
+    {
+        return this.serviceAppuntiImpl.appuntoById(id);
+    }
+    
 }
 

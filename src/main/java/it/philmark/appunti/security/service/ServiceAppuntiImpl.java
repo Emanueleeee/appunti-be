@@ -61,6 +61,11 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
 
     }
 
+    @Override
+    public Appunti appuntoById(Long id) {
+        return appuntiRepo.findById(id).get();
+    }
+
 
 }
 

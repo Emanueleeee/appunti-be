@@ -17,6 +17,7 @@ public interface ServiceAppunti {
     public List<Appunti> listaAppuntiPerUtente(Long id);
     
     public List<Appunti> listaAppuntiPub(Boolean pub);
+    public Appunti appuntoById(Long id);
 
 
 }
