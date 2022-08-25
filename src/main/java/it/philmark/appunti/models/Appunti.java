@@ -19,6 +19,7 @@ public class Appunti extends BaseEntity implements Serializable {
     @Column(name="sottotitolo")
     private String sottotitolo;
     @Column(name="testo")
+    @Lob
     private String testo;
 
     @Column(name="pub")
