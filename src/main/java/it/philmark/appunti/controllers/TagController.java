@@ -1,14 +1,14 @@
 package it.philmark.appunti.controllers;
 
+import it.philmark.appunti.models.Appunti;
 import it.philmark.appunti.models.Tag;
 import it.philmark.appunti.security.service.ServiceTagImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  *
@@ -34,5 +34,12 @@ public class TagController
     @ResponseBody
     public Tag cercaTag(@RequestBody String name){
         return serviceTagImpl.cercaTag(name);
+    }
+
+    @GetMapping(value ={"/listaTuttiTag"})
+    @ResponseBody
+    public List<Tag> listaTuttiTag()
+    {
+        return this.serviceTagImpl.listaTuttiTag();
     }
 }
