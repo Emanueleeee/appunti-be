@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -15,7 +18,9 @@ import javax.persistence.*;
 public class Tag {
 
     @Id
-    @Column( name = "name", length = 50)
+    @NotEmpty
+    @Size(max = 20,min= 3)
+    @Column( name = "name")
     private String name;
 
     @ManyToMany(mappedBy = "listaTag")

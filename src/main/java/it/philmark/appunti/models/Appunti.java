@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Appunti")
@@ -14,15 +17,23 @@ public class Appunti extends BaseEntity implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column (name="Id")
     private Long id;
+
     @Column(name="titolo")
+    @NotEmpty
+    @Size(max = 20, min=3)
     private String titolo;
     @Column(name="sottotitolo")
+    @NotEmpty
+    @Size(max = 20,min=3)
     private String sottotitolo;
     @Column(name="testo")
     @Lob
+    @NotEmpty
+    @Size(min=20)
     private String testo;
 
     @Column(name="pub")
+
     private Boolean pub;
 
     @ManyToOne
@@ -36,7 +47,6 @@ public class Appunti extends BaseEntity implements Serializable {
            inverseJoinColumns = @JoinColumn(name = "tag_name"))
     private List<Tag> listaTag = new ArrayList<>();
 
-    //dwjwfjwf
 
 
     public String getTitolo() {
