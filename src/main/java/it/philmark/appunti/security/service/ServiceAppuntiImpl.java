@@ -26,10 +26,7 @@ public class ServiceAppuntiImpl implements ServiceAppunti{
     public Appunti saveAppunti(Appunti appunti) {
 
         for (Tag x: appunti.getListaTag()){
-
-            if(tagRepo.findByName(x.getName()) != null){
-                return appuntiRepo.save(appunti);
-            }else{
+            if(tagRepo.findByName(x.getName()) == null){
                 tagRepo.save(x);
             }
         }
